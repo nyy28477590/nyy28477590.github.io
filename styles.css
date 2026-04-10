@@ -483,6 +483,192 @@ body {
     line-height: 1.6;
 }
 
+.blog-card.featured {
+    position: relative;
+}
+
+.blog-card.featured::before {
+    content: 'First Post';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1d4ed8;
+    background: #dbeafe;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+}
+
+/* Blog Article */
+.article-shell {
+    padding: 8rem 0 5rem;
+}
+
+.article-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.article-hero {
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 65%);
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.article-eyebrow {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1d4ed8;
+    background: #dbeafe;
+    border-radius: 999px;
+    padding: 0.35rem 0.7rem;
+    margin-bottom: 1rem;
+}
+
+.article-hero h1 {
+    font-size: 2.8rem;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.9rem;
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+}
+
+.article-lead {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: var(--text-secondary);
+}
+
+.article-content {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.article-content h2 {
+    font-size: 1.6rem;
+    margin: 2rem 0 0.85rem;
+    letter-spacing: -0.02em;
+}
+
+.article-content h3 {
+    font-size: 1.18rem;
+    margin: 1.4rem 0 0.7rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.article-content h2:first-child {
+    margin-top: 0;
+}
+
+.article-content p {
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+}
+
+.article-content ul,
+.article-content ol {
+    color: var(--text-secondary);
+    padding-left: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.article-content li {
+    margin-bottom: 0.45rem;
+    line-height: 1.8;
+}
+
+.article-content code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background: #eff6ff;
+    color: #1e3a8a;
+    padding: 0.12rem 0.35rem;
+    border-radius: 0.35rem;
+}
+
+.article-content pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.15rem;
+    overflow-x: auto;
+    margin: 1.25rem 0 1.5rem;
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.16);
+}
+
+.article-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+}
+
+.article-figure {
+    margin: 1.5rem 0;
+}
+
+.article-figure img {
+    width: 100%;
+    display: block;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.article-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.article-note {
+    background: #f8fafc;
+    border-left: 4px solid #60a5fa;
+    border-radius: 0.85rem;
+    padding: 1rem 1.1rem;
+    margin: 1.5rem 0;
+}
+
+.article-note p:last-child {
+    margin-bottom: 0;
+}
+
+.article-backlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: #1d4ed8;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.article-backlink:hover {
+    text-decoration: underline;
+}
+
 /* Contact */
 .contact-content {
     text-align: center;
@@ -574,6 +760,20 @@ body {
         font-size: 2.4rem;
     }
 
+    .article-shell {
+        padding: 7rem 0 4rem;
+    }
+
+    .article-hero,
+    .article-content {
+        padding: 1.35rem;
+        border-radius: 1rem;
+    }
+
+    .article-hero h1 {
+        font-size: 2.1rem;
+    }
+
     .hero-subtitle {
         font-size: 1.2rem;
     }
@@ -644,6 +844,14 @@ body {
 
     .hero-description {
         font-size: 0.98rem;
+    }
+
+    .article-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .article-meta {
+        font-size: 0.9rem;
     }
 
     .project-card,

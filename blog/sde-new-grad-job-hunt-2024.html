@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="2024 SDE New Grad 美國求職心得，整理背景、準備方法、履歷優化、BQ 練習與面試經驗。">
+    <title>2024 SDE New Grad 美國求職心得 | Sean Lee</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Sean Lee</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#experience">Experience</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#blog">Blog</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="article-shell">
+        <div class="container">
+            <div class="article-wrap">
+                <a class="article-backlink" href="../index.html#blog">&larr; Back to Blog</a>
+
+                <header class="article-hero">
+                    <span class="article-eyebrow">Career Notes</span>
+                    <h1>2024 SDE New Grad 美國求職心得</h1>
+                    <div class="article-meta">
+                        <span>Published on August 31, 2024</span>
+                        <span>New Grad</span>
+                        <span>Job Search</span>
+                        <span>SDE</span>
+                    </div>
+                    <p class="article-lead">
+                        上一次寫心得文，已經是兩年前的學校申請心得了。經過兩年的學校生活、無數封拒信，
+                        以及整整兩年的履歷投遞之後，我終於在 7 月拿到了第一個 offer。這一路上真的受到太多幫助，
+                        所以想把整個過程記錄下來，希望能對之後找工作的同學有一些幫助。
+                    </p>
+                </header>
+
+                <article class="article-content">
+                    <h2>背景</h2>
+                    <ul>
+                        <li>學歷：五專北商財金、二技北商商務系、一碩台科資管、二碩 CMU MSSE</li>
+                        <li>實習：台灣某工業電腦大廠 1.5 年、台灣某新創 3 個月</li>
+                        <li>2023 暑期實習：投了 200+ 個職缺，拿到 1 個面試，最後沒有找到美國實習</li>
+                        <li>2024 正職：投了 1000+ 個職缺，拿到 8 個面試，最後拿到 3 個 offer</li>
+                    </ul>
+
+                    <h2>前期心態</h2>
+                    <p>
+                        先講最真實的部分，這段求職路並不輕鬆。市場狀況差、裁員頻繁、new grad 職缺少，
+                        再加上我本身是轉領域背景，所以從一開始就知道這不會是一條好走的路。
+                    </p>
+                    <p>
+                        但我後來越來越明白，求職不只是比誰比較會寫題，而是比誰能在漫長的低回報期裡持續往前。
+                        很多時候你努力了幾個月，表面上看起來什麼都沒發生，可是那些準備最後都會在某個節點一起兌現。
+                    </p>
+
+                    <h2>準備方法</h2>
+                    <h3>刷題</h3>
+                    <p>
+                        LeetCode 我大概刷了 400 題。剛開始的主軸是先把常見題型建立起來，所以主要用
+                        <a href="https://neetcode.io/" target="_blank" rel="noreferrer">NeetCode 150</a>
+                        作為起點，語言用 Python。對我來說，最重要的不是單純把題目做出來，而是真的搞懂每個常見演算法背後的 pattern。
+                    </p>
+                    <p>
+                        中間我也找同學固定每週做 mock interview。這個練習非常有用，因為面試時除了寫 code，
+                        還需要邊想邊講，還要讓面試官知道你在做什麼、為什麼這樣做。能不能把思路講清楚，
+                        對結果的影響其實很大。
+                    </p>
+
+                    <h3>CS 基礎</h3>
+                    <p>
+                        我是轉領域學生，對一些 CS 基礎本來沒有那麼熟，但某些公司真的很愛考這些所謂的八股，
+                        像是作業系統、網路通訊、thread、process、memory、TCP / UDP 之類的概念。所以我花了不少時間去補這些學科。
+                    </p>
+                    <p>這邊分享幾個我覺得很實用的資源：</p>
+                    <ul>
+                        <li><a href="https://javabetter.cn/sidebar/sanfene/nixi.html" target="_blank" rel="noreferrer">二哥的 Java 進階之路</a></li>
+                        <li><a href="https://www.w3schools.com/" target="_blank" rel="noreferrer">W3Schools</a></li>
+                    </ul>
+
+                    <h3>履歷</h3>
+                    <p>
+                        我在求職過程中最常想的一件事，就是要怎麼讓履歷變得更好。尤其像我這種沒有 full-time 經驗的轉碼 new grad，
+                        更是很容易在第一關就被刷掉。
+                    </p>
+                    <p>
+                        我後來的理解是，大部分公司在前期都會先用系統或關鍵字做篩選，所以最直接的方法就是提高關鍵字命中率，
+                        盡可能去 match job description。當你發現怎麼改都很難 match 時，就代表你需要回過頭來觀察市場現在到底要什麼。
+                    </p>
+                    <p>
+                        當時我在海投過程中觀察到市場突然增加了很多 LLM、RAG 相關職缺，所以我主動聯繫前公司，
+                        爭取到一個 LLM 專案，也很感謝前公司願意給我這個機會。同時，我也發現很多職缺都寫著希望有 distributed systems 經驗，
+                        所以我又去爭取擔任教授 distributed systems 研究案的研究助理。
+                    </p>
+                    <p>
+                        這些努力的結果，不會在隔天馬上反映，但它們會慢慢把你的履歷從「看起來普通」變成「開始有人願意回覆」。
+                        後來我再持續修改 bullet points、加入更多量化指標之後，終於慢慢開始收到 HR reach out 與面試機會。
+                    </p>
+                    <p>如果要把這段經驗濃縮成幾點，我會這樣建議：</p>
+                    <ol>
+                        <li>觀察市場趨勢。</li>
+                        <li>補上與市場需求對應的經驗。</li>
+                        <li>盡量量化你的貢獻與影響。</li>
+                        <li>多找有經驗的前輩幫忙看履歷。</li>
+                    </ol>
+
+                    <h3>行為問題 BQ</h3>
+                    <p>
+                        很多公司除了技術面試之外，也非常重視 behavioral interview。有些公司甚至會把 BQ 看得比技術更重，
+                        所以這一塊真的不能只臨時抱佛腳。
+                    </p>
+                    <p>
+                        我的準備方式是先熟讀一套很常被拿來考察 leadership 與 ownership 的面試原則，再把 STAR method 練熟，
+                        也就是用 Situation、Task、Action、Result 的結構去講故事。再來，我會為每個 leadership principle
+                        準備一到兩個故事，這樣不管面試官從哪個角度切進來，我都比較有辦法快速組織答案。
+                    </p>
+                    <p>這邊附上幾個很有幫助的參考資料：</p>
+                    <ul>
+                        <li><a href="https://www.amazon.jobs/content/en/our-workplace/leadership-principles" target="_blank" rel="noreferrer">Leadership Principles</a></li>
+                        <li><a href="https://www.1point3acres.com/bbs/thread-679738-1-1.html" target="_blank" rel="noreferrer">一畝三分地：Cracking Leadership Principles</a></li>
+                    </ul>
+
+                    <h2>面試心得</h2>
+                    <p>
+                        我挑幾個印象比較深的面試來分享。不是每一場都有好結果，但每一場都讓我更知道市場在看什麼，
+                        也更知道自己缺什麼。
+                    </p>
+
+                    <h3>短影音科技公司</h3>
+                    <p><strong>Database / NoSQL 方向的軟體工程職缺</strong></p>
+                    <p>
+                        這是我的第一個正職面試。我其實沒有主動投這個職缺，不知道是從哪裡被撈起來的，但也因為是第一個，
+                        所以整體很有震撼教育的感覺。
+                    </p>
+                    <p>Timeline:</p>
+                    <ul>
+                        <li>04/10: HR 來信詢問背景</li>
+                        <li>04/16: 第一輪面試</li>
+                        <li>04/29: 第二輪面試</li>
+                        <li>05/06: 拒信</li>
+                    </ul>
+                    <p>
+                        如果是偏基礎派的面試官，這類公司的面試很常會問大量 CS 基礎問題，準備起來相對辛苦。
+                        這兩輪面試都很像，先深入問履歷上的專案，再從這些專案往下鑽到作業系統或底層原理，
+                        最後再出一題演算法題。
+                    </p>
+
+                    <h3>短影音科技公司</h3>
+                    <p><strong>Machine Learning Platform / SRE 方向職缺</strong></p>
+                    <p>
+                        這個職位是透過朋友內推拿到的，主要工作是確保機器學習平台能穩定運行。
+                    </p>
+                    <p>Timeline:</p>
+                    <ul>
+                        <li>07/03: HR 來信詢問背景</li>
+                        <li>07/16: 第一輪面試</li>
+                        <li>07/23: 第二輪面試</li>
+                        <li>07/30: 第三輪面試</li>
+                        <li>08/01: 拒信</li>
+                    </ul>
+                    <p>
+                        這場也是同一類型公司的典型風格，考了很多作業系統、網路通訊基礎，也會丟很多真實 production 情境讓你現場分析，
+                        最後一樣有演算法題。
+                    </p>
+
+                    <h3>灣區機器人新創</h3>
+                    <p><strong>Cloud Services 方向的軟體工程職缺</strong></p>
+                    <p>
+                        這是一間位於舊金山的新創公司，主要在做倉儲自動化系統。整個流程只能用一個字形容，就是累。
+                    </p>
+                    <p>Timeline:</p>
+                    <ul>
+                        <li>06/24: 投遞履歷</li>
+                        <li>06/25: HR 來信詢問背景</li>
+                        <li>06/28: 第一個 take-home project</li>
+                        <li>07/03: HR 告知 project 通過</li>
+                        <li>07/05: HR 面試</li>
+                        <li>07/05: 第二個 take-home project</li>
+                        <li>07/10: HR 告知 project 通過</li>
+                        <li>07/11: 兩輪面試</li>
+                        <li>07/12: 一輪面試</li>
+                        <li>07/15: CEO 面試</li>
+                        <li>07/31: 拒信</li>
+                    </ul>
+                    <p>
+                        這個流程有兩個限時而且 loading 很重的 take-home，基本上直接吃掉我兩個周末。
+                        因為有 NDA，project 細節不能說，但整體面試很重 BQ，問了很多行為題。面完之後 HR 告知 feedback 都是 positive，
+                        但等了兩週還是收到拒信。這也是求職過程很常見的一件事，你可能走得很深，最後還是什麼都沒有。
+                    </p>
+
+                    <h3>大型電商科技公司</h3>
+                    <p><strong>2024 US New Grad Software Engineer</strong></p>
+                    <p>
+                        這是某大型科技公司的 2024 年 new grad 職缺。我有請朋友幫忙內推。其實這個職缺 5/15 就開了，
+                        但我晚了三週才看到，好險最後還是順利走完面試並拿到 offer。
+                    </p>
+                    <p>Timeline:</p>
+                    <ul>
+                        <li>06/07: 投遞履歷</li>
+                        <li>06/21: OA</li>
+                        <li>07/15: 三輪面試</li>
+                        <li>07/19: offer</li>
+                    </ul>
+                    <p>
+                        OA 除了演算法之外，還有很多情境題，會看你在職場場景中如何做判斷。三輪面試裡有一輪是完整的 BQ，
+                        一個小時幾乎都在挖故事細節，所以故事如果沒有真的準備熟，很容易被追問到卡住。其他兩輪則是一半 BQ 一半 coding，
+                        coding 有考物件設計，也有考演算法，題目類型其實很接近面經裡常出現的內容。
+                    </p>
+                    <p>
+                        如果要準備這類很重視 leadership principle 的公司，我會強烈建議把面經爬熟，
+                        尤其是 BQ 與 LP 對應的故事，一定要先準備到可以自然講出來。
+                    </p>
+
+                    <h3>大型叫車平台</h3>
+                    <p><strong>2024 Graduate Software Engineer I</strong></p>
+                    <p>
+                        這間公司的 2024 new grad 職缺印象中只開了一天就關掉了，所以很多時候也真的是比手速。
+                    </p>
+                    <p>Timeline:</p>
+                    <ul>
+                        <li>06/22: 投遞履歷</li>
+                        <li>06/25: OA</li>
+                        <li>07/18: Phone screen</li>
+                        <li>07/19: HR 來電告知通過 phone screen，進入 VO</li>
+                        <li>07/26: 三輪面試</li>
+                        <li>08/02: offer</li>
+                    </ul>
+                    <p>
+                        Phone screen 基本上就是正常面試流程，先自我介紹、過履歷，接著開始 coding。
+                        VO 有兩輪 coding 和一輪 BQ。coding 難度大概從 medium 到 hard 都有，可以用該公司的 LeetCode tag
+                        來準備。BQ 問題數量不少，我印象中大概有八到九個，但和前面那種特別重視 LP 的公司相比，通常不會追得那麼細。
+                    </p>
+
+                    <h2>最後的感想</h2>
+                    <p>
+                        這幾年市場真的不太好，頻繁裁員讓整個就業市場競爭越來越激烈，尤其對 new grad 更不友善。
+                        這一路走來，真的會有很多想放棄的時刻。被拒、沒消息、流程走很深最後還是沒 offer，這些都會一直發生。
+                    </p>
+                    <p>
+                        我很感謝這條路上幫助過我的人。沒有這些人的幫忙，我不可能上岸，只會一直淹在茫茫職缺和拒信裡。
+                    </p>
+                    <p>
+                        如果你是想來美國發展的同學，我會真心建議，若有機會先累積兩三年工作經驗，會比 new grad 身份容易很多。
+                        我身邊能比較快找到工作的同學，通常都有多年工作經驗；經驗較少的同學，大多都找得非常辛苦。
+                    </p>
+                    <p>
+                        當然，如果你真的想一畢業就來，我也還是相信只要你夠努力，最後還是有機會找到工作的。
+                        連我這種背景都做到了，怎麼可能你不行。加油。
+                    </p>
+
+                    <h2>Reference</h2>
+                    <ul>
+                        <li><a href="https://neetcode.io/" target="_blank" rel="noreferrer">NeetCode</a></li>
+                        <li><a href="https://javabetter.cn/sidebar/sanfene/nixi.html" target="_blank" rel="noreferrer">二哥的 Java 進階之路</a></li>
+                        <li><a href="https://www.w3schools.com/" target="_blank" rel="noreferrer">W3Schools</a></li>
+                        <li><a href="https://www.amazon.jobs/content/en/our-workplace/leadership-principles" target="_blank" rel="noreferrer">Leadership Principles</a></li>
+                        <li><a href="https://www.1point3acres.com/bbs/thread-679738-1-1.html" target="_blank" rel="noreferrer">Cracking Leadership Principles</a></li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="current-year">2026</span> Tung-Sheng (Sean) Lee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

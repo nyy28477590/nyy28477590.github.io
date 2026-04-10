@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="用圖解和 Python 範例重新介紹 Longest Common Subsequence (LCS) 演算法。">
+    <title>Longest Common Subsequence (LCS) 演算法入門 | Sean Lee</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Sean Lee</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#experience">Experience</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#blog">Blog</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="article-shell">
+        <div class="container">
+            <div class="article-wrap">
+                <a class="article-backlink" href="../index.html#blog">&larr; Back to Blog</a>
+
+                <header class="article-hero">
+                    <span class="article-eyebrow">Algorithm Notes</span>
+                    <h1>Longest Common Subsequence (LCS) 演算法入門</h1>
+                    <div class="article-meta">
+                        <span>Published on December 6, 2020</span>
+                        <span>Dynamic Programming</span>
+                        <span>Python</span>
+                    </div>
+                    <p class="article-lead">
+                        這篇文章會介紹 LCS 的核心觀念。LCS 是經典的動態規劃題型，
+                        核心在於把兩個字串的前綴狀態拆開來看，先定義好子問題，再透過表格或遞迴逐步求解。
+                    </p>
+                </header>
+
+                <article class="article-content">
+                    <h2>什麼是 LCS？</h2>
+                    <p>
+                        LCS，全名是 Longest Common Subsequence，也就是「最長共同子序列」。
+                        給定兩個字串，我們要找出一個最長的序列，使得它同時是兩邊的 subsequence。
+                        這裡的重點是 subsequence 不要求連續，只要求相對順序不變。
+                    </p>
+                    <p>
+                        例如字串 <code>abcd</code> 和 <code>abdef</code> 的 LCS 長度是 <code>3</code>，
+                        其中一個答案是 <code>abd</code>。而在下面的圖解中，我會先用較小的例子
+                        <code>A = "abcd"</code>、<code>B = "aed"</code> 來說明 DP 表格的意義，
+                        因為這樣更容易看出每一格是怎麼推導出來的。
+                    </p>
+
+                    <figure class="article-figure">
+                        <img src="../images/lcs/20201206212534.png" alt="LCS 主題圖，展示 A=abcd 與 B=aed 的表格示意">
+                        <figcaption>先把兩個字串排成表格，後面每一格都代表一個更小的子問題。</figcaption>
+                    </figure>
+
+                    <h2>遞迴思路</h2>
+                    <p>
+                        如果我們只看兩個字串的最後一個字元，其實就能把問題分成兩種情況：
+                    </p>
+                    <ol>
+                        <li>若最後一個字元相同，答案一定可以由前一個子問題接上這個字元，所以是左上角加一。</li>
+                        <li>若最後一個字元不同，就代表至少有一邊的最後一個字元不會出現在最佳答案裡，因此要比較「去掉 x 最後一個字元」和「去掉 y 最後一個字元」兩種情況。</li>
+                    </ol>
+
+                    <pre><code>def lcs(x, y, m, n):
+    if m == 0 or n == 0:
+        return 0
+    elif x[m - 1] == y[n - 1]:
+        return lcs(x, y, m - 1, n - 1) + 1
+    else:
+        return max(lcs(x, y, m, n - 1), lcs(x, y, m - 1, n))
+
+
+x = 'abcd'
+y = 'abdef'
+print(lcs(x, y, len(x), len(y)))</code></pre>
+
+                    <p>
+                        這段程式的參數 <code>m</code> 和 <code>n</code>，代表我們目前正在看
+                        <code>x[:m]</code> 和 <code>y[:n]</code> 這兩段前綴。當其中一邊長度變成 0，
+                        就表示不可能還有共同子序列，所以直接回傳 0。
+                    </p>
+
+                    <div class="article-note">
+                        <p>
+                            遞迴版最直觀，但它會重複計算很多子問題。也因為這樣，LCS 才會是動態規劃入門時非常經典的例子。
+                        </p>
+                    </div>
+
+                    <h2>DP 表格怎麼填？</h2>
+                    <p>
+                        把字串 A 放在上方、字串 B 放在左側，我們建立一個二維表格。
+                        表格中的 <code>dp[i][j]</code> 表示：
+                        B 的前 <code>i</code> 個字元，和 A 的前 <code>j</code> 個字元，它們的 LCS 長度是多少。
+                    </p>
+                    <p>
+                        第一列和第一行都先填 0，因為只要其中一邊是空字串，LCS 長度就是 0。
+                    </p>
+
+                    <figure class="article-figure">
+                        <img src="../images/lcs/photo_2020-12-06_20-39-53.jpg" alt="LCS DP 表格初步填寫，A 為 abcd，B 為 aed">
+                        <figcaption>表格中的每一格，都對應到兩個前綴字串之間的最長共同子序列長度。</figcaption>
+                    </figure>
+
+                    <p>接著套用剛剛的兩個規則：</p>
+                    <ul>
+                        <li>如果目前比較的兩個字元相同，這一格就是左上角的值再加 1。</li>
+                        <li>如果不同，這一格就取上方和左方兩者的較大值。</li>
+                    </ul>
+
+                    <figure class="article-figure">
+                        <img src="../images/lcs/20201206205809.png" alt="LCS DP 表格規則示意圖，說明相同與不同字元時的轉移">
+                        <figcaption>相同看左上加一，不同就從上方和左方挑較大的值。</figcaption>
+                    </figure>
+
+                    <p>
+                        以圖中的例子來看，當我們比較到 <code>a</code> 和 <code>a</code> 時，
+                        因為字母相同，所以那一格是左上角 <code>0 + 1</code>，得到 <code>1</code>。
+                        但當字母不同，例如 <code>e</code> 和 <code>c</code>，就只能從上面或左邊延續目前已知的最佳結果。
+                    </p>
+
+                    <figure class="article-figure">
+                        <img src="../images/lcs/photo_2020-12-06_20-53-06.jpg" alt="LCS 規則圖與中文註記，說明相同取左上加一，不同取上或左較大">
+                        <figcaption>這張圖把轉移規則直接標在表格上，是整個 LCS DP 的核心。</figcaption>
+                    </figure>
+
+                    <h2>怎麼把答案找回來？</h2>
+                    <p>
+                        表格右下角的數字只告訴我們 LCS 的長度。如果想知道實際字串內容，就要從右下角往回走：
+                    </p>
+                    <ol>
+                        <li>若兩個字元相同，代表這個字元屬於答案，往左上移動。</li>
+                        <li>若不同，就往數值比較大的方向走；如果左邊和上面一樣大，通常擇一即可。</li>
+                    </ol>
+
+                    <figure class="article-figure">
+                        <img src="../images/lcs/20201206211349.png" alt="LCS 回推路徑圖，最後找出 ad">
+                        <figcaption>沿著表格回推，就能從右下角把答案字元一個一個找回來，這個例子得到的是 <code>ad</code>。</figcaption>
+                    </figure>
+
+                    <p>
+                        在圖解例子 <code>A = "abcd"</code>、<code>B = "aed"</code> 中，最後得到的 LCS 是
+                        <code>ad</code>，長度是 <code>2</code>。而你上面那段遞迴程式用的
+                        <code>abcd</code> 和 <code>abdef</code>，則會算出長度 <code>3</code>。
+                    </p>
+
+                    <h2>時間複雜度</h2>
+                    <p>
+                        單純遞迴會重複展開很多一樣的子問題，時間複雜度接近指數級。當字串稍微變長時，效能就會很差。
+                        如果改成 DP 表格或在遞迴上加 memoization，就可以把時間複雜度降到 <code>O(mn)</code>，
+                        空間複雜度也是 <code>O(mn)</code>。
+                    </p>
+
+                    <h2>小結</h2>
+                    <p>
+                        我覺得 LCS 最值得記住的不是公式本身，而是拆問題的方式：先定義「前綴和前綴」之間的關係，
+                        再讓每一格只依賴左、上、左上這三個已經解過的子問題。掌握這個思路之後，很多 DP 題都會開始變得比較有方向感。
+                    </p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="current-year">2026</span> Tung-Sheng (Sean) Lee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
