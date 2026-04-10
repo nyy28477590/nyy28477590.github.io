@@ -1,10 +1,15 @@
+function getNavbarOffset() {
+    const navbar = document.querySelector('.navbar');
+    return navbar ? navbar.offsetHeight + 16 : 80;
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offsetTop = target.offsetTop - 80;
+            const offsetTop = target.offsetTop - getNavbarOffset();
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -75,7 +80,7 @@ function highlightCurrentSection() {
     let currentSection = '';
 
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 110;
+        const sectionTop = section.offsetTop - getNavbarOffset() - 16;
         if (window.scrollY >= sectionTop) {
             currentSection = section.getAttribute('id');
         }

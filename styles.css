@@ -18,11 +18,16 @@
     --shadow-lg: 0 20px 35px rgba(15, 23, 42, 0.14);
 }
 
+html {
+    scroll-padding-top: 7rem;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background: radial-gradient(circle at top right, #eff6ff 0%, #ffffff 45%);
+    overflow-x: hidden;
 }
 
 .container {
@@ -48,6 +53,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    gap: 1rem;
 }
 
 .nav-brand {
@@ -61,6 +67,7 @@ body {
     display: flex;
     list-style: none;
     gap: 1.2rem;
+    align-items: center;
 }
 
 .nav-menu a {
@@ -83,7 +90,7 @@ body {
     padding: 9rem 0 6rem;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #334155 100%);
     color: white;
-    margin-top: 60px;
+    margin-top: 0;
 }
 
 .hero-content {
@@ -192,6 +199,7 @@ body {
 /* Sections */
 .section {
     padding: 5rem 0;
+    scroll-margin-top: 7rem;
 }
 
 .section-alt {
@@ -365,7 +373,7 @@ body {
 }
 
 .timeline-details li::before {
-    content: '▹';
+    content: '\25B9';
     position: absolute;
     left: 0;
     color: #2563eb;
@@ -375,7 +383,7 @@ body {
 /* Projects */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: 1.5rem;
 }
 
@@ -425,7 +433,7 @@ body {
 /* Blog */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
     gap: 1.5rem;
 }
 
@@ -490,7 +498,7 @@ body {
 
 .contact-links {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     gap: 1rem;
 }
 
@@ -506,6 +514,7 @@ body {
     text-decoration: none;
     color: var(--text-primary);
     transition: transform 0.3s, box-shadow 0.3s;
+    min-width: 0;
 }
 
 .contact-item:hover {
@@ -515,6 +524,7 @@ body {
 
 .contact-icon {
     font-size: 1.3rem;
+    flex-shrink: 0;
 }
 
 /* Footer */
@@ -538,11 +548,26 @@ body {
 }
 
 @media (max-width: 768px) {
+    .section {
+        padding: 4.25rem 0;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.85rem 1rem;
+    }
+
     .nav-menu {
-        gap: 0.3rem;
+        width: 100%;
+        gap: 0.4rem;
         font-size: 0.88rem;
         flex-wrap: wrap;
-        justify-content: flex-end;
+        justify-content: flex-start;
+    }
+
+    .nav-menu a {
+        padding: 0.4rem 0.6rem;
     }
 
     .hero-title {
@@ -574,9 +599,21 @@ body {
         gap: 1rem;
     }
 
+    .timeline-info > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
     .company-logo {
         width: 48px;
         height: 48px;
+    }
+
+    .company,
+    .period,
+    .location {
+        margin-right: 0;
     }
 }
 
@@ -589,6 +626,14 @@ body {
         padding: 7rem 0 4.2rem;
     }
 
+    .nav-brand {
+        font-size: 1.25rem;
+    }
+
+    .nav-menu {
+        font-size: 0.82rem;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -599,5 +644,21 @@ body {
 
     .hero-description {
         font-size: 0.98rem;
+    }
+
+    .project-card,
+    .timeline-content,
+    .contact-item,
+    .skill-category {
+        padding: 1.1rem;
+    }
+
+    .contact-item {
+        align-items: flex-start;
+    }
+
+    .contact-item span:last-child {
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 }
