@@ -1,17 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sean Lee</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tung-Sheng (Sean) Lee - Software Engineer specializing in distributed systems, cloud infrastructure, and AI/ML">
+    <title>Sean Lee - Software Engineer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hi, I'm Sean Lee</h1>
-  <p>Software Engineer | Backend | AI</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Sean Lee</div>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <h2>Articles</h2>
-  <ul>
-    <li><a href="/articles/first-post.html">My First Post</a></li>
-  </ul>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Tung-Sheng (Sean) Lee</h1>
+                <h2 class="hero-subtitle">Software Engineer</h2>
+                <p class="hero-description">
+                    Building scalable distributed systems and cloud infrastructure at Amazon. 
+                    2.5+ years delivering high-reliability production systems at 100K+ TPS.
+                </p>
+                <div class="hero-links">
+                    <a href="mailto:seanleetech@gmail.com" class="btn btn-primary">Get in Touch</a>
+                    <a href="https://github.com/nyy28477590" target="_blank" class="btn btn-secondary">GitHub</a>
+                    <a href="https://linkedin.com/in/nyy28477590" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    I'm a Software Engineer with expertise in building large-scale distributed systems and cloud infrastructure. 
+                    Currently at Amazon, I engineer mission-critical backend services for Echo Show, delivering 100K+ TPS with 
+                    high availability to support LLM-powered multimodal experiences at global scale.
+                </p>
+                <p>
+                    My passion lies in designing scalable cloud infrastructure, distributed data systems, and AI-driven automation 
+                    that solve real-world problems at scale.
+                </p>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming</h3>
+                        <div class="skill-tags">
+                            <span>Python</span>
+                            <span>Java</span>
+                            <span>Kotlin</span>
+                            <span>Go</span>
+                            <span>JavaScript</span>
+                            <span>C#</span>
+                            <span>C/C++</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data Engineering</h3>
+                        <div class="skill-tags">
+                            <span>Kafka</span>
+                            <span>Spark</span>
+                            <span>Flink</span>
+                            <span>Iceberg</span>
+                            <span>DynamoDB</span>
+                            <span>MySQL</span>
+                            <span>Tableau</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Cloud & DevOps</h3>
+                        <div class="skill-tags">
+                            <span>AWS</span>
+                            <span>CDK</span>
+                            <span>Docker</span>
+                            <span>Kubernetes</span>
+                            <span>CloudWatch</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI/ML</h3>
+                        <div class="skill-tags">
+                            <span>TensorFlow</span>
+                            <span>PyTorch</span>
+                            <span>BERT</span>
+                            <span>LLM</span>
+                            <span>RAG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-logo amazon-logo">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100" height="100" fill="#FF9900"/>
+                                    <text x="50" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">AMZN</text>
+                                </svg>
+                            </div>
+                            <div class="timeline-info">
+                                <h3>Software Development Engineer</h3>
+                                <div>
+                                    <span class="company">Amazon</span>
+                                    <span class="period">Aug 2024 - Present</span>
+                                    <span class="location">Sunnyvale, CA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Engineered mission-critical cloud backend services for Echo Show, delivering 100K+ TPS with high availability</li>
+                            <li>Led design and implementation of LLM-powered multi-agent orchestration system with RAG and hybrid retrieval</li>
+                            <li>Designed cloud-native knowledge base update platform using EventBridge, KMS, SQS, and Lambda</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-logo cmu-logo">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100" height="100" fill="#C41230"/>
+                                    <text x="50" y="60" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">CMU</text>
+                                </svg>
+                            </div>
+                            <div class="timeline-info">
+                                <h3>Graduate Research Assistant</h3>
+                                <div>
+                                    <span class="company">Carnegie Mellon University</span>
+                                    <span class="period">Jan 2024 - May 2024</span>
+                                    <span class="location">Mountain View, CA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Designed data sharding proxy using consistent hashing, improving query performance by 140%</li>
+                            <li>Implemented Raft algorithm and Two-Phase Commit (2PC) protocol in C++ for data consistency</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-logo advantech-logo">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100" height="100" fill="#0066B3"/>
+                                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">ADV</text>
+                                </svg>
+                            </div>
+                            <div class="timeline-info">
+                                <h3>Software Engineer (Full-Stack)</h3>
+                                <div>
+                                    <span class="company">Advantech</span>
+                                    <span class="period">Oct 2023 - Jan 2024</span>
+                                    <span class="location">Remote</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Built containerized storage service with GraphQL and MongoDB, achieving 80% cost reduction with 500 QPS</li>
+                            <li>Developed LLM-powered RAG chatbot, indexing 10K+ documents for 5K+ global users</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-logo alifecom-logo">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100" height="100" fill="#4A90E2"/>
+                                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="white" text-anchor="middle">ALF</text>
+                                </svg>
+                            </div>
+                            <div class="timeline-info">
+                                <h3>Software Engineer Intern</h3>
+                                <div>
+                                    <span class="company">Alifecom</span>
+                                    <span class="period">Jun 2023 - Aug 2023</span>
+                                    <span class="location">Remote</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Designed cloud-native validation framework for DSP hardware testing on AWS</li>
+                            <li>Built multi-threaded TCP testing service, improving throughput by 3× while reducing cost by 50%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-logo advantech-logo">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100" height="100" fill="#0066B3"/>
+                                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">ADV</text>
+                                </svg>
+                            </div>
+                            <div class="timeline-info">
+                                <h3>Software Engineer (AI/ML)</h3>
+                                <div>
+                                    <span class="company">Advantech</span>
+                                    <span class="period">Sep 2021 - Aug 2022</span>
+                                    <span class="location">Taipei, Taiwan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Designed Market Intelligence Platform with BERT-based NER models and ETL pipelines</li>
+                            <li>Developed C# .NET Core MVC BI platform, increasing dashboard delivery from 1-2 to dozens per month</li>
+                            <li>Improved prediction accuracy by 20% using XGBoost forecasting with market insights</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Alexa+ Experiences</h3>
+                    <p>Built cloud backend delivering 100K+ TPS for LLM-powered customer experiences at Amazon, supporting multimodal interactions at global scale.</p>
+                    <div class="project-tags">
+                        <span>AWS</span>
+                        <span>LLM</span>
+                        <span>High Availability</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Cloud-Based DSP Validation Platform</h3>
+                    <p>Designed automated, cloud-native hardware validation framework, improving test throughput by 3× while reducing infrastructure cost by 50%.</p>
+                    <div class="project-tags">
+                        <span>AWS</span>
+                        <span>Docker</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Market Intelligence Platform</h3>
+                    <p>Engineered distributed data pipelines and ML systems providing real-time supply insights for 1M+ materials using BERT NER and XGBoost.</p>
+                    <div class="project-tags">
+                        <span>AI/ML</span>
+                        <span>ETL</span>
+                        <span>Tableau</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Blog Posts</h2>
+            <div id="blog-posts" class="blog-grid">
+                <!-- Blog posts will be added here -->
+                <p class="blog-placeholder">Blog posts coming soon...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm currently open to new opportunities. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:seanleetech@gmail.com" class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>seanleetech@gmail.com</span>
+                    </a>
+                    <a href="https://github.com/nyy28477590" target="_blank" class="contact-item">
+                        <span class="contact-icon">💻</span>
+                        <span>github.com/nyy28477590</span>
+                    </a>
+                    <a href="https://linkedin.com/in/nyy28477590" target="_blank" class="contact-item">
+                        <span class="contact-icon">💼</span>
+                        <span>linkedin.com/in/nyy28477590</span>
+                    </a>
+                    <a href="tel:+13417328943" class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span>(341) 732-8943</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tung-Sheng (Sean) Lee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
