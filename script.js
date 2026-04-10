@@ -17,9 +17,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        navbar.style.boxShadow = '0 12px 28px rgba(15, 23, 42, 0.12)';
+        navbar.style.borderBottomColor = 'rgba(148, 163, 184, 0.35)';
     } else {
-        navbar.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
+        navbar.style.boxShadow = 'none';
+        navbar.style.borderBottomColor = 'rgba(148, 163, 184, 0.2)';
     }
 });
 
@@ -37,39 +39,73 @@ const blogPosts = [
 // Render blog posts
 function renderBlogPosts() {
     const blogContainer = document.getElementById('blog-posts');
-    
+
     if (blogPosts.length === 0) {
         return; // Keep placeholder
     }
-    
+
     blogContainer.innerHTML = '';
-    
+
     blogPosts.forEach(post => {
         const blogCard = document.createElement('a');
         blogCard.href = post.url;
         blogCard.target = '_blank';
         blogCard.className = 'blog-card';
-        
+
         blogCard.innerHTML = `
             <div class="blog-card-content">
                 <h3>${post.title}</h3>
-                <div class="blog-date">${new Date(post.date).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
+                <div class="blog-date">${new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
                 })}</div>
                 <p class="blog-excerpt">${post.excerpt}</p>
             </div>
         `;
-        
+
         blogContainer.appendChild(blogCard);
+    });
+}
+
+// Highlight current section in nav
+function highlightCurrentSection() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    let currentSection = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 110;
+        if (window.scrollY >= sectionTop) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        const targetId = link.getAttribute('href').replace('#', '');
+        if (targetId === currentSection) {
+            link.style.color = '#0f172a';
+            link.style.backgroundColor = '#dbeafe';
+        } else {
+            link.style.color = '';
+            link.style.backgroundColor = '';
+        }
     });
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     renderBlogPosts();
+
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+
+    highlightCurrentSection();
 });
+
+window.addEventListener('scroll', highlightCurrentSection);
 
 // Add animation on scroll
 const observerOptions = {
@@ -88,7 +124,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.timeline-item, .project-card, .skill-category');
+    const animatedElements = document.querySelectorAll('.timeline-item, .project-card, .skill-category, .contact-item');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
