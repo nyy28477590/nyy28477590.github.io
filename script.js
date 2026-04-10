@@ -65,6 +65,59 @@ function registerAnalyticsClicks() {
     });
 }
 
+function registerArticleReadTracking() {
+    const article = document.querySelector('.article-content');
+
+    if (!article) {
+        return;
+    }
+
+    const articleTitle =
+        document.querySelector('.article-hero h1')?.textContent?.trim() ||
+        document.title;
+    const milestones = [50, 90];
+    const firedMilestones = new Set();
+    let articleReadSent = false;
+    const pageStart = Date.now();
+
+    function getScrollPercent() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const viewportHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const maxScrollable = Math.max(documentHeight - viewportHeight, 1);
+
+        return Math.min(100, Math.round((scrollTop / maxScrollable) * 100));
+    }
+
+    function trackArticleProgress() {
+        const scrollPercent = getScrollPercent();
+
+        milestones.forEach(milestone => {
+            if (scrollPercent >= milestone && !firedMilestones.has(milestone)) {
+                firedMilestones.add(milestone);
+                sendAnalyticsEvent('article_progress', {
+                    article_title: articleTitle,
+                    article_path: window.location.pathname,
+                    scroll_percent: milestone
+                });
+            }
+        });
+
+        if (!articleReadSent && scrollPercent >= 75) {
+            articleReadSent = true;
+            sendAnalyticsEvent('article_read', {
+                article_title: articleTitle,
+                article_path: window.location.pathname,
+                scroll_percent: scrollPercent,
+                time_on_page_seconds: Math.round((Date.now() - pageStart) / 1000)
+            });
+        }
+    }
+
+    window.addEventListener('scroll', trackArticleProgress, { passive: true });
+    trackArticleProgress();
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -189,6 +242,7 @@ function highlightCurrentSection() {
 document.addEventListener('DOMContentLoaded', () => {
     renderBlogPosts();
     registerAnalyticsClicks();
+    registerArticleReadTracking();
 
     const yearElement = document.getElementById('current-year');
     if (yearElement) {
