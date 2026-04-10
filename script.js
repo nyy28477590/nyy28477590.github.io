@@ -3,6 +3,68 @@ function getNavbarOffset() {
     return navbar ? navbar.offsetHeight + 16 : 80;
 }
 
+function sendAnalyticsEvent(eventName, params) {
+    if (typeof window.gtag !== 'function') {
+        return;
+    }
+
+    window.gtag('event', eventName, params);
+}
+
+function classifyLink(href) {
+    if (!href) {
+        return 'unknown';
+    }
+
+    if (href.startsWith('mailto:')) {
+        return 'email';
+    }
+
+    if (href.startsWith('tel:')) {
+        return 'phone';
+    }
+
+    if (href.includes('github.com')) {
+        return 'github';
+    }
+
+    if (href.includes('linkedin.com')) {
+        return 'linkedin';
+    }
+
+    if (href.startsWith('http')) {
+        return 'external';
+    }
+
+    if (href.includes('/blog/') || href.startsWith('blog/')) {
+        return 'blog_post';
+    }
+
+    return 'internal';
+}
+
+function registerAnalyticsClicks() {
+    const trackedLinks = document.querySelectorAll(
+        '.hero-links a, .contact-item, .blog-card, .article-backlink'
+    );
+
+    trackedLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const href = link.getAttribute('href') || '';
+            const linkType = classifyLink(href);
+            const linkText = (link.textContent || '').trim().replace(/\s+/g, ' ');
+
+            sendAnalyticsEvent('select_content', {
+                content_type: 'link',
+                item_id: href,
+                item_name: linkText,
+                link_type: linkType,
+                page_location: window.location.pathname
+            });
+        });
+    });
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -126,6 +188,7 @@ function highlightCurrentSection() {
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     renderBlogPosts();
+    registerAnalyticsClicks();
 
     const yearElement = document.getElementById('current-year');
     if (yearElement) {
