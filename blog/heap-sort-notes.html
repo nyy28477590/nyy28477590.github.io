@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="介紹 Heap Sort 堆積排序法，整理 heap、heapify 與 Python 實作。">
+    <title>Heap Sort 堆積排序法 | Sean Lee</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z2R29KTKR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-2Z2R29KTKR');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-brand">Sean Lee</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#experience">Experience</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#blog">Blog</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="article-shell">
+        <div class="container">
+            <div class="article-wrap">
+                <a class="article-backlink" href="../index.html#blog">&larr; Back to Blog</a>
+
+                <header class="article-hero">
+                    <span class="article-eyebrow">Algorithm Notes</span>
+                    <h1>Heap Sort 堆積排序法</h1>
+                    <div class="article-meta">
+                        <span>Published on January 3, 2021</span>
+                        <span>Heap</span>
+                        <span>Sorting</span>
+                        <span>Python</span>
+                    </div>
+                    <p class="article-lead">
+                        這篇文章會從 heap 的基本概念開始，接著說明 max-heap 和 min-heap 的差異，
+                        最後用 Python 程式一步一步把 Heap Sort 的流程跑完。
+                    </p>
+                </header>
+
+                <article class="article-content">
+                    <h2>什麼是 Heap？</h2>
+                    <p>
+                        Heap 可以把它想成一棵 complete binary tree，也就是除了最後一層之外都被填滿，
+                        最後一層則由左到右依序放入節點。因為結構固定得很規則，所以實作時通常不用真的建樹，
+                        直接用陣列就能表示。
+                    </p>
+
+                    <figure class="article-figure">
+                        <img src="../images/heapSort/二元樹.jpg" alt="Complete binary tree 與索引位置示意圖">
+                        <figcaption>Heap 通常以 complete binary tree 來理解，節點位置可以直接映射到陣列索引。</figcaption>
+                    </figure>
+
+                    <p>
+                        以上圖來看，如果節點位置用 1-based index 表示，父節點 <code>i</code> 的左兒子會是
+                        <code>2i</code>，右兒子會是 <code>2i + 1</code>。也因為這個規則，heap 非常適合用陣列操作。
+                    </p>
+
+                    <h2>Max-Heap 和 Min-Heap</h2>
+                    <p>
+                        Heap 最重要的是「heap property」。如果每個父節點都大於等於自己的子節點，就是 max-heap；
+                        如果每個父節點都小於等於自己的子節點，就是 min-heap。
+                    </p>
+
+                    <figure class="article-figure">
+                        <img src="../images/heapSort/maxmin heap.jpg" alt="Max heap 與 min heap 的比較圖">
+                        <figcaption>Max-heap 適合把最大值一路放到根節點，min-heap 則把最小值維持在最上方。</figcaption>
+                    </figure>
+
+                    <p>
+                        要做由小到大的 Heap Sort，常見做法是先建立 max-heap。因為這樣每一次都能把當前最大值放到根節點，
+                        再交換到陣列尾端，逐步完成排序。
+                    </p>
+
+                    <figure class="article-figure">
+                        <img src="../images/heapSort/heapsort cover.jpg" alt="Heap Sort 封面圖，展示 max heap 與 min heap 的概念">
+                        <figcaption>這張圖剛好把 Heap Sort 的核心觀念濃縮成一頁：先理解 heap，再理解排序流程。</figcaption>
+                    </figure>
+
+                    <h2>核心觀念：把一個節點往下調整</h2>
+                    <p>
+                        Heap Sort 的關鍵不是交換本身，而是每次交換完之後，如何把不符合 heap property 的那個節點重新調回正確位置。
+                        在這份筆記裡，這個動作由 <code>adjust</code> 負責。
+                    </p>
+
+                    <pre><code>def adjust(arr, i, n):
+    child = 2 * i  # 兒子
+    item = arr[i - 1]  # 被選中的值
+
+    while child &lt;= n:
+        if child &lt; n and arr[child - 1] &lt; arr[child]:
+            child += 1
+
+        if item &gt;= arr[child - 1]:
+            break
+
+        arr[(child // 2) - 1] = arr[child - 1]
+        child *= 2
+
+    arr[int(child // 2) - 1] = item
+    print("調整：", arr)</code></pre>
+
+                    <p>
+                        這段寫法有一個很實用的技巧：先把目前節點值存到 <code>item</code>，
+                        然後一路往下找比較大的子節點，把較大的子節點往上搬。直到找到合適的位置，再把 <code>item</code> 放回去。
+                        這樣可以避免每一層都做多餘交換。
+                    </p>
+
+                    <figure class="article-figure">
+                        <img src="../images/heapSort/二元樹1.jpg" alt="Heap 調整步驟第一張示意圖">
+                        <figcaption>從某個父節點開始往下看，先找兩個子節點之中比較大的那一個。</figcaption>
+                    </figure>
+
+                    <figure class="article-figure">
+                        <img src="../images/heapSort/二元樹2.jpg" alt="Heap 調整步驟第二張示意圖">
+                        <figcaption>如果子節點更大，就把子節點往上補，原本的值繼續往下找位置。</figcaption>
+                    </figure>
+
+                    <figure class="article-figure">
+                        <img src="../images/heapSort/二元樹3.jpg" alt="Heap 調整步驟第三張示意圖">
+                        <figcaption>被選中的值會沿著路徑往下移動，直到滿足 max-heap 的條件。</figcaption>
+                    </figure>
+
+                    <figure class="article-figure">
+                        <img src="../images/heapSort/二元樹4.jpg" alt="Heap 調整步驟第四張示意圖">
+                        <figcaption>最後把值放回正確位置，該子樹就重新變成合法的 heap。</figcaption>
+                    </figure>
+
+                    <h2>先建堆，再排序</h2>
+                    <p>
+                        有了 <code>adjust</code> 之後，下一步就是把整個陣列整理成 max-heap。作法是從最後一個非葉節點開始，
+                        一路往前呼叫 <code>adjust</code>。
+                    </p>
+
+                    <pre><code>def heapify(arr, n):
+    for i in range(int(n // 2), 0, -1):
+        adjust(arr, i, len(arr))</code></pre>
+
+                    <p>
+                        為什麼從 <code>n // 2</code> 開始？因為陣列後半段都是葉節點，葉節點本身不需要再往下調整。
+                        真正可能破壞 heap property 的，是所有有子節點的父節點。
+                    </p>
+
+                    <p>
+                        當整個陣列已經是一個 max-heap 之後，就能開始真正的排序流程：把根節點和尾端交換，
+                        把目前最大值固定到右邊，接著縮小 heap 範圍，再對根節點做一次 <code>adjust</code>。
+                    </p>
+
+                    <pre><code>def heapSort(arr, n):
+    heapify(arr, len(arr))
+
+    for i in range(n, 1, -1):
+        arr[i - 1], arr[0] = arr[0], arr[i - 1]
+        print("交換：", arr)
+        adjust(arr, 1, i - 1)
+
+    return arr</code></pre>
+
+                    <div class="article-note">
+                        <p>
+                            這份實作使用 1-based 的 heap 思維去計算父子關係，但實際儲存在 Python list 時仍是 0-based。
+                            所以你會看到很多 <code>i - 1</code> 這種位移。
+                        </p>
+                    </div>
+
+                    <h2>實際跑一次</h2>
+                    <p>
+                        原 notebook 使用的測試資料是 <code>[5, 10, 2, 7, 1]</code>。先做 heapify，再反覆交換與調整，
+                        最後得到排序好的結果。
+                    </p>
+
+                    <pre><code>arr = [5, 10, 2, 7, 1]
+heapSort(arr, len(arr))
+
+print("排序後", arr)
+
+# 輸出
+# 調整： [5, 10, 2, 7, 1]
+# 調整： [10, 7, 2, 5, 1]
+# 交換： [1, 7, 2, 5, 10]
+# 調整： [7, 5, 2, 1, 10]
+# 交換： [1, 5, 2, 7, 10]
+# 調整： [5, 1, 2, 7, 10]
+# 交換： [2, 1, 5, 7, 10]
+# 調整： [2, 1, 5, 7, 10]
+# 交換： [1, 2, 5, 7, 10]
+# 調整： [1, 2, 5, 7, 10]
+# 排序後 [1, 2, 5, 7, 10]</code></pre>
+
+                    <p>
+                        這整個過程其實很有節奏感：先把最大值送到根，再把它交換到目前未排序區間的最後面，
+                        然後把新的根重新下沉到正確位置。重複這件事，陣列右側就會慢慢形成一段已排序區間。
+                    </p>
+
+                    <h2>時間複雜度與特性</h2>
+                    <ul>
+                        <li>建立 heap 的時間複雜度是 <code>O(n)</code>。</li>
+                        <li>之後每次取出最大值並重新調整是 <code>O(log n)</code>。</li>
+                        <li>整體 Heap Sort 的時間複雜度是 <code>O(n log n)</code>。</li>
+                        <li>額外空間複雜度可以做到 <code>O(1)</code>，因為排序能在原陣列上完成。</li>
+                        <li>缺點是它通常不是 stable sort，而且實務上快取友善度也不一定比 quicksort 好。</li>
+                    </ul>
+
+                    <h2>小結</h2>
+                    <p>
+                        我覺得 Heap Sort 最容易卡住的地方，不是「交換根和尾端」這件事，而是怎麼理解 <code>adjust</code> 這個往下篩的動作。
+                        一旦把「父節點要和較大的子節點比較」這個原則想清楚，整個演算法就會順很多。
+                    </p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="current-year">2026</span> Tung-Sheng (Sean) Lee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
